@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/Users/martinsundeqvist/.sdkman/candidates/java/21-amzn/lib"/>
-    <property name="sun.java.command" value="/Users/martinsundeqvist/coding/mock-server/mock-server/target/surefire/surefirebooter-20231002090345549_3.jar /Users/martinsundeqvist/coding/mock-server/mock-server/target/surefire 2023-10-02T09-03-45_512-jvmRun1 surefire-20231002090345549_1tmp surefire_0-20231002090345549_2tmp"/>
+    <property name="sun.java.command" value="/Users/martinsundeqvist/coding/mock-server/mock-server/target/surefire/surefirebooter-20231002221156243_3.jar /Users/martinsundeqvist/coding/mock-server/mock-server/target/surefire 2023-10-02T22-11-56_206-jvmRun1 surefire-20231002221156243_1tmp surefire_0-20231002221156243_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/martinsundeqvist/coding/mock-server/mock-server/target/test-classes:/Users/martinsundeqvist/coding/mock-server/mock-server/target/classes:/Users/martinsundeqvist/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/martinsundeqvist/.m2/repository/org/postgresql/postgresql/42.2.20/postgresql-42.2.20.jar:/Users/martinsundeqvist/.m2/repository/org/checkerframework/checker-qual/3.5.0/checker-qual-3.5.0.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/martinsundeqvist/coding/mock-server/mock-server/target/surefire/surefirebooter-20231002090345549_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/martinsundeqvist/coding/mock-server/mock-server/target/surefire/surefirebooter-20231002221156243_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21+35-LTS"/>

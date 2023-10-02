@@ -8,12 +8,14 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class MockServer {
 
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/mydatabase"; // Update with your URL, port, and database name
+    private static final String DB_URL = "jdbc:postgresql://postgres:5432/mydatabase"; // Update with your URL, port, and database name
     private static final String USER = "postgres"; // Update with your username
     private static final String PASS = "postgres"; // Update with your password
 
@@ -65,7 +67,7 @@ public class MockServer {
 
                     IncomingHttpRequest request = new IncomingHttpRequest(method, endpoint, body);
 
-                    queryPostgres();
+                    queryPostgres(request);
 
 
                     // Responding to the client to close the connection gracefully
@@ -84,22 +86,18 @@ public class MockServer {
         }
     }
 
-    private static void queryPostgres() {
+    private static void queryPostgres(IncomingHttpRequest httpRequest) {
+        String sql = "INSERT INTO messages (method, uri, body) VALUES (?, ?, ?)";
+        
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-             Statement stmt = connection.createStatement()) {
-            
-            String query = "SELECT * FROM messages"; // Update with your query
-            ResultSet rs = stmt.executeQuery(query);
-            
-            while (rs.next()) {
-                // Retrieve values from the ResultSet, e.g., by column name
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                
-                System.out.println("ID: " + id + ", Name: " + name);
-            }
-            
-        } catch (Exception e) {
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        
+            pstmt.setString(1, httpRequest.getMethod());
+            pstmt.setString(2, httpRequest.getEndpoint());
+            pstmt.setString(3, httpRequest.getBody());
+            pstmt.executeUpdate();
+        
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

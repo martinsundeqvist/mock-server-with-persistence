@@ -2,11 +2,13 @@ version: '3'
 services:
   mock-server:
     image: localhost/mock-server:latest
+    container_name: mock-server
     ports:
       - "8080:8080"
 
   postgres:
     image: postgres:13
+    container_name: postgres
     ports:
       - "5432:5432"
     environment:
