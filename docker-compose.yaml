@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mock-server:
+    image: localhost/mock-server:latest
+    ports:
+      - "8080:8080"
+
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./create-message-table.sql:/docker-entrypoint-initdb.d/create-message-table.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
