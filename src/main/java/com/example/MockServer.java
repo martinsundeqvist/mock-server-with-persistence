@@ -16,9 +16,11 @@ import java.util.concurrent.Executors;
 
 public class MockServer {
 
-    private static final String DB_URL = "jdbc:postgresql://postgres:5432/mydatabase";
-    private static final String USER = "postgres";
-    private static final String PASS = "postgres";
+    private static final String POSTGRES_HOST = System.getenv("POSTGRES_HOST");
+    private static final String POSTGRES_PORT = System.getenv("POSTGRES_PORT");
+    private static final String DATABASE_NAME = System.getenv("POSTGRES_DB");
+    private static final String POSTGRES_USER = System.getenv("POSTGRES_USER");
+    private static final String POSTGRES_PASSWORD = System.getenv("POSTGRES_PASSWORD");
 
     private static final int READ_TIMEOUT_MS = 5000;
     private static final int MAX_CONTENT_LENGTH = 1024 * 1024; // 1 MB
@@ -100,7 +102,8 @@ public class MockServer {
     private static void queryPostgres(IncomingHttpRequest httpRequest) {
         String sql = "INSERT INTO messages (method, uri, body) VALUES (?, ?, ?)";
         
-        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+        final String db_url = String.format("jdbc:postgresql://%s:%s/%s", POSTGRES_HOST, POSTGRES_PORT, DATABASE_NAME);
+        try (Connection connection = DriverManager.getConnection(db_url, POSTGRES_USER, POSTGRES_PASSWORD);
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
         
             pstmt.setString(1, httpRequest.getMethod());
